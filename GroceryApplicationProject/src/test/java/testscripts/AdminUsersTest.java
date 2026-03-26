@@ -8,6 +8,7 @@ import java.io.IOException;
 
 
 import automationcore.TestNgBase;
+import constant.Constants;
 import pages.AdminUsersPage;
 import pages.HomePage;
 import pages.LoginPage;
@@ -16,7 +17,7 @@ import utilities.FakerUtility;
 
 public class AdminUsersTest extends TestNgBase {
 
-	@Test
+	@Test (description = "Validate whether user is able to create a new user")
 
 	public void verifyWhetherUserIsAbletoAddNewUser() throws IOException {
 
@@ -46,11 +47,11 @@ public class AdminUsersTest extends TestNgBase {
 		adminusers.clickSaveButton();
 		
 		boolean savebuttondisplay = adminusers.isSaveButtonDisplayed();
-		Assert.assertFalse(savebuttondisplay,"User Not Created Successfully");
+		Assert.assertFalse(savebuttondisplay,Constants.ADDNEWUSERERROR);
 
 	}
 
-	@Test
+	@Test  (description = "Validate whether user is able to search a user")
 	public void verifyWhetherUserIsAbletoSearchUser() throws IOException {
 		String username = ExcelUtility.readStringData(0, 0, "LoginPage");
 		String Password = ExcelUtility.readStringData(0, 1, "LoginPage");
@@ -73,12 +74,12 @@ public class AdminUsersTest extends TestNgBase {
 		adminusers.clickSearchSubmitButton();
 		
 		String adminusertile = adminusers.isAdminUsersTitleDisplayed();
-		Assert.assertEquals(adminusertile,"Admin Users","Unable to search the User");
+		Assert.assertEquals(adminusertile,Constants.USERSEARCHERROR);
 		
 
 	}
 
-	@Test
+	@Test  (description = "Validate whether user is able to reset the page")
 	public void verifyWhetherUserIsAbletoReset() throws IOException {
 
 		String username = ExcelUtility.readStringData(0, 0, "LoginPage");
@@ -94,6 +95,9 @@ public class AdminUsersTest extends TestNgBase {
 
 		AdminUsersPage adminusers = new AdminUsersPage(driver);
 		adminusers.clickResetButton();
+		
+		String adminusersheading = adminusers.isAdminUsersTitleDisplayed();
+		Assert.assertEquals(adminusersheading, "Admin Users", Constants.ADMINUSERSRESETERROR);
 
 	}
 

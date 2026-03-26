@@ -30,7 +30,11 @@ public class ManageNewsPage {
 	WebElement entertitle;
 	@FindBy(xpath = "//button[@class='btn btn-danger btn-fix']")
 	WebElement searchsubmitbutton;
-
+	@FindBy(xpath ="//h4[text()='Manage News' and @class='card-title']")
+	WebElement managenewstext;
+	@FindBy(xpath = "//h1[text()='Manage News' and @class='m-0 text-dark']")
+	WebElement managenewsheading;
+	
 	public void clickOnNewButtonInManageNewsField() {
 
 		newbutton.click();
@@ -65,6 +69,21 @@ public class ManageNewsPage {
 	
 	public void clickOnResetButtonInManageNewsPage() {
 		resetbutton.click();
+	}
+	
+	public boolean isSaveButtonDisplayed() {
+		
+		return savebutton.isDisplayed();
+	}
+	
+	public String isManageNewsTextDisplayed() {
+		
+		return managenewstext.getText();
+	}
+	
+	public String isManageNewsHeadingDisplayed() {
+		
+		return managenewsheading.getText();
 	}
 
 }

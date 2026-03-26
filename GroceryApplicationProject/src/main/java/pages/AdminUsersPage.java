@@ -38,7 +38,8 @@ public class AdminUsersPage {
 	@FindBy(id = "ut")
 	WebElement searchusertypefield;
 	
-	@FindBy(xpath="//h4[contains(@class,'card-title') and starts-with(text(),'Admin Users')]")WebElement adminusertile;
+	@FindBy(xpath="//h4[contains(@class,'card-title') and starts-with(text(),'Admin Users')]")
+	WebElement adminusertile;
 	
 	
 	public void clickNewbutton() {

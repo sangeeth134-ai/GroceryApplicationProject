@@ -6,13 +6,14 @@ import java.io.IOException;
 
 
 import automationcore.TestNgBase;
+import constant.Constants;
 import pages.HomePage;
 import pages.LoginPage;
 import utilities.ExcelUtility;
 
 public class HomeTest extends TestNgBase{
+	@Test(description = "Validate user is able to logout", retryAnalyzer = retry.Retry.class)
 	
-	@Test
 	public void verifyUserisAbleToSuccessfullyLogout() throws IOException {
 		
 		String username = ExcelUtility.readStringData(0, 0, "LoginPage");
@@ -30,7 +31,7 @@ public class HomeTest extends TestNgBase{
 		String actual = home.getTextFromApplicationTitle();
 		String expected = "7rmart supermarket";
 		
-		Assert.assertEquals(actual, expected, "User was unable to logout");
+		Assert.assertEquals(actual, expected, Constants.LOGOUTERROR);
 		
 	}
 

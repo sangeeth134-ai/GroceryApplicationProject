@@ -2,9 +2,11 @@ package testscripts;
 
 import java.io.IOException;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import automationcore.TestNgBase;
+import constant.Constants;
 import pages.HomePage;
 import pages.LoginPage;
 import pages.ManageNewsPage;
@@ -39,6 +41,9 @@ public class ManageNewsTest extends TestNgBase{
 		managenews.enterNewsIntheNewsField(news);
 		managenews.clickOnSaveButtonInManageNewsPage();
 		
+		boolean savebuttondisplay =  managenews.isSaveButtonDisplayed();
+		Assert.assertFalse(savebuttondisplay,Constants.ADDNEWNEWSERROR);
+		
 		
 	}
 	
@@ -63,6 +68,10 @@ public class ManageNewsTest extends TestNgBase{
 		managenews.enterTheTitle(news);
 		managenews.clickOnSeachSubmitButtonInManageNewsPage();
 		
+		String managenewstext = managenews.isManageNewsTextDisplayed();
+		Assert.assertEquals(managenewstext, "Manage News",  Constants.NEWSSEARCHERROR);
+		
+		
 	}
 	
 	@Test (priority= 3 , description = "Test case to verify whether user is able to reset the news list")
@@ -86,6 +95,9 @@ public class ManageNewsTest extends TestNgBase{
 		managenews.enterTheTitle(news);
 		managenews.clickOnSeachSubmitButtonInManageNewsPage();
 		managenews.clickOnResetButtonInManageNewsPage();
+		
+		String managenewsheadingtext = managenews.isManageNewsHeadingDisplayed();
+		Assert.assertEquals(managenewsheadingtext, "Manage News",  Constants.MANAGENEWSRESETERROR); 
 		
 		
 	}

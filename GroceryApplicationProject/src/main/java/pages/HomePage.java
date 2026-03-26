@@ -22,28 +22,34 @@ public WebDriver driver;
 	@FindBy(xpath="//a[@class='small-box-footer' and contains(@href,'list-news')]")WebElement managenewsmoreinfobutton;
 	@FindBy(xpath = "//b[text()='7rmart supermarket']")WebElement applicationtitle;
 	
-	public void clickAdminicon() {
+	public HomePage clickAdminicon() {
 		adminicon.click();
+		return this;
 		
 	}
 	
-	public void clickLogoutButton() {
+	public LoginPage clickLogoutButton() {
 		
 		logoutbutton.click();
+		return new LoginPage(driver);
 		
 	}
 	
-	public void clickMoreInfoButton() {
+	public AdminUsersPage clickMoreInfoButton() {
 		
 		moreinfobutton.click();
+		return new AdminUsersPage(driver);
 		
 	}
 	
-	public void clickManageNewMoreInfoButton() {
+	
+	public ManageNewsPage clickManageNewMoreInfoButton() {
 		
 		managenewsmoreinfobutton.click();
+		return new ManageNewsPage(driver);
 	}
 	
+	//Assertions
 	public String getTextFromApplicationTitle() {
 		
 		return applicationtitle.getText();

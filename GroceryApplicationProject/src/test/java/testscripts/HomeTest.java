@@ -12,6 +12,9 @@ import pages.LoginPage;
 import utilities.ExcelUtility;
 
 public class HomeTest extends TestNgBase{
+	
+	HomePage home;
+	
 	@Test(description = "Validate user is able to logout", retryAnalyzer = retry.Retry.class)
 	
 	public void verifyUserisAbleToSuccessfullyLogout() throws IOException {
@@ -20,13 +23,12 @@ public class HomeTest extends TestNgBase{
 		String Password = ExcelUtility.readStringData(0, 1, "LoginPage");
 		
 		LoginPage login = new LoginPage(driver);
-		login.enterUsername(username);
-		login.enterPassword(Password);
-		login.clickSubmitbutton();
+		login.enterUsername(username).enterPassword(Password);
+		home = login.clickSubmitbutton();
 		
-		HomePage home = new HomePage(driver);
+		
 		home.clickAdminicon();
-		home.clickLogoutButton();
+		login = home.clickLogoutButton();
 		
 		String actual = home.getTextFromApplicationTitle();
 		String expected = "7rmart supermarket";

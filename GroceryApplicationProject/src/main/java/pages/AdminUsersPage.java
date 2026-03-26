@@ -6,9 +6,15 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
+import utilities.PageUtility;
+import utilities.WaitUtility;
+
 public class AdminUsersPage {
 
 	public WebDriver driver;
+	
+	WaitUtility wait = new WaitUtility();
+	PageUtility page = new PageUtility();
 
 	public AdminUsersPage(WebDriver driver) {
 
@@ -64,6 +70,7 @@ public class AdminUsersPage {
 
 	public void clickSaveButton() {
 
+		wait.waitUntilElementToBeClickable(driver, savebutton);
 		savebutton.click();
 	}
 
@@ -80,8 +87,10 @@ public class AdminUsersPage {
 
 	public void selectUserTypeForSearch(String searchusertype) {
 
-		Select select = new Select(searchusertypefield);
-		select.selectByVisibleText(searchusertype);
+		//Select select = new Select(searchusertypefield);
+		//select.selectByVisibleText(searchusertype);
+		
+		page.selectDropdownWithVisibleText(searchusertypefield, searchusertype);
 	}
 
 	public void clickSearchSubmitButton() {
@@ -93,6 +102,8 @@ public class AdminUsersPage {
 
 		resetbutton.click();
 	}
+	
+	//Assertions
 	
 	public boolean isSaveButtonDisplayed() {
 		

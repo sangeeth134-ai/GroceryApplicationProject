@@ -7,11 +7,13 @@ import java.io.IOException;
 
 import automationcore.TestNgBase;
 import constant.Constants;
+import pages.HomePage;
 import pages.LoginPage;
 import utilities.ExcelUtility;
 
 public class LoginTest extends TestNgBase{
 	
+	HomePage home;
 
 	@Test(priority=1, description = "Validate user with valid username and password", groups ="smoke")
 	
@@ -22,9 +24,8 @@ public class LoginTest extends TestNgBase{
 		String Password = ExcelUtility.readStringData(0, 1, "LoginPage");
 		
 		LoginPage login = new LoginPage(driver);
-		login.enterUsername(username);
-		login.enterPassword(Password);
-		login.clickSubmitbutton();
+		login.enterUsername(username).enterPassword(Password);
+		home = login.clickSubmitbutton();
 		
 		boolean dashboarddisplay = login.isDashboardDisplayed();
 		Assert.assertTrue(dashboarddisplay, Constants.VALIDCRENDIALERROR);
@@ -41,9 +42,7 @@ public class LoginTest extends TestNgBase{
 		String Password = ExcelUtility.readStringData(1, 1, "LoginPage");
 		
 		LoginPage login = new LoginPage(driver);
-		login.enterUsername(username);
-		login.enterPassword(Password);
-		login.clickSubmitbutton();
+		login.enterUsername(username).enterPassword(Password).clickSubmitbutton();
 		
 		String actual = login.getTextFromApplicationTitle();
 		String expected = "7rmart supermarket";
@@ -63,9 +62,7 @@ public class LoginTest extends TestNgBase{
 		String Password = ExcelUtility.readStringData(2, 1, "LoginPage");
 		
 		LoginPage login = new LoginPage(driver);
-		login.enterUsername(username);
-		login.enterPassword(Password);
-		login.clickSubmitbutton();
+		login.enterUsername(username).enterPassword(Password).clickSubmitbutton();
 		
 		String actual = login.getTextFromApplicationTitle();
 		String expected = "7rmart supermarket";

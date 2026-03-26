@@ -16,21 +16,23 @@ import utilities.ExcelUtility;
 import utilities.FakerUtility;
 
 public class AdminUsersTest extends TestNgBase {
+	
+	HomePage home;
+	AdminUsersPage adminusers;
 
 	@Test (description = "Validate whether user is able to create a new user")
 
 	public void verifyWhetherUserIsAbletoAddNewUser() throws IOException {
+		
 
 		String username = ExcelUtility.readStringData(0, 0, "LoginPage");
 		String Password = ExcelUtility.readStringData(0, 1, "LoginPage");
 
 		LoginPage login = new LoginPage(driver);
-		login.enterUsername(username);
-		login.enterPassword(Password);
-		login.clickSubmitbutton();
+		login.enterUsername(username).enterPassword(Password);
+		home = login.clickSubmitbutton();
 
-		HomePage home = new HomePage(driver);
-		home.clickMoreInfoButton();
+		adminusers = home.clickMoreInfoButton();
 
 		//faker utility 
 		FakerUtility fakerutility = new FakerUtility();
@@ -38,13 +40,7 @@ public class AdminUsersTest extends TestNgBase {
 		String newpassword = fakerutility.createRandomPassword();
 		String newusertype = ExcelUtility.readStringData(0, 2, "AdminUsersPage");
 		
-
-		AdminUsersPage adminusers = new AdminUsersPage(driver);
-		adminusers.clickNewbutton();
-		adminusers.enterUsernameOnUsernameField(newusername);
-		adminusers.enterPasswordOnPasswordField(newpassword);
-		adminusers.selectUserType(newusertype);
-		adminusers.clickSaveButton();
+		adminusers.clickNewbutton().enterUsernameOnUsernameField(newusername).enterPasswordOnPasswordField(newpassword).selectUserType(newusertype).clickSaveButton();
 		
 		boolean savebuttondisplay = adminusers.isSaveButtonDisplayed();
 		Assert.assertFalse(savebuttondisplay,Constants.ADDNEWUSERERROR);
@@ -57,21 +53,16 @@ public class AdminUsersTest extends TestNgBase {
 		String Password = ExcelUtility.readStringData(0, 1, "LoginPage");
 
 		LoginPage login = new LoginPage(driver);
-		login.enterUsername(username);
-		login.enterPassword(Password);
-		login.clickSubmitbutton();
+		login.enterUsername(username).enterPassword(Password);
+		home = login.clickSubmitbutton();
 
-		HomePage home = new HomePage(driver);
-		home.clickMoreInfoButton();
+		adminusers = home.clickMoreInfoButton();
 
 		String searchusername = ExcelUtility.readStringData(0, 0, "AdminUsersPage");
 		String searchusertype = ExcelUtility.readStringData(0, 2, "AdminUsersPage");
 
-		AdminUsersPage adminusers = new AdminUsersPage(driver);
-		adminusers.clickSearchMenuButton();
-		adminusers.enterUsernameOnSearchUserNameField(searchusername);
-		adminusers.selectUserTypeForSearch(searchusertype);
-		adminusers.clickSearchSubmitButton();
+	
+		adminusers.clickSearchMenuButton().enterUsernameOnSearchUserNameField(searchusername).selectUserTypeForSearch(searchusertype).clickSearchSubmitButton();
 		
 		String adminusertile = adminusers.isAdminUsersTitleDisplayed();
 		Assert.assertEquals(adminusertile,Constants.USERSEARCHERROR);
@@ -86,14 +77,12 @@ public class AdminUsersTest extends TestNgBase {
 		String Password = ExcelUtility.readStringData(0, 1, "LoginPage");
 
 		LoginPage login = new LoginPage(driver);
-		login.enterUsername(username);
-		login.enterPassword(Password);
-		login.clickSubmitbutton();
+		login.enterUsername(username).enterPassword(Password);
+		home = login.clickSubmitbutton();
 
-		HomePage home = new HomePage(driver);
-		home.clickMoreInfoButton();
+	
+		adminusers = home.clickMoreInfoButton();
 
-		AdminUsersPage adminusers = new AdminUsersPage(driver);
 		adminusers.clickResetButton();
 		
 		String adminusersheading = adminusers.isAdminUsersTitleDisplayed();

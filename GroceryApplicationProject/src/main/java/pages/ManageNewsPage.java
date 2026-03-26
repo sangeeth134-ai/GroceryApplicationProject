@@ -6,6 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class ManageNewsPage {
+	
 
 	public WebDriver driver;
 
@@ -35,42 +36,51 @@ public class ManageNewsPage {
 	@FindBy(xpath = "//h1[text()='Manage News' and @class='m-0 text-dark']")
 	WebElement managenewsheading;
 	
-	public void clickOnNewButtonInManageNewsField() {
+	public ManageNewsPage clickOnNewButtonInManageNewsField() {
 
 		newbutton.click();
+		return this;
 	}
 
-	public void enterNewsIntheNewsField(String news) {
+	public ManageNewsPage enterNewsIntheNewsField(String news) {
 
 		enterthenews.sendKeys(news);
+		return this;
 	}
 
-	public void clickOnSaveButtonInManageNewsPage() {
+	public ManageNewsPage clickOnSaveButtonInManageNewsPage() {
 
 		savebutton.click();
+		return this;
 	}
 	
 	
-	public void clickOnSearchButtonInManageNewsPage() {
+	public ManageNewsPage clickOnSearchButtonInManageNewsPage() {
 		
 		searchmenubutton.click();
+		return this;
 	}
 	
 	
-	public void enterTheTitle(String title) {
+	public ManageNewsPage enterTheTitle(String title) {
 		
 		entertitle.sendKeys(title);
+		return this;
 	}
 	
-	public void clickOnSeachSubmitButtonInManageNewsPage() {
+	public ManageNewsPage clickOnSeachSubmitButtonInManageNewsPage() {
 		
 		searchsubmitbutton.click();
+		return this;
 	}
 	
-	public void clickOnResetButtonInManageNewsPage() {
+	public ManageNewsPage clickOnResetButtonInManageNewsPage() {
 		resetbutton.click();
+		return this;
 	}
 	
+	
+	//Assertions
 	public boolean isSaveButtonDisplayed() {
 		
 		return savebutton.isDisplayed();

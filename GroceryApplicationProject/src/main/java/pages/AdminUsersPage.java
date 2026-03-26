@@ -48,59 +48,66 @@ public class AdminUsersPage {
 	WebElement adminusertile;
 	
 	
-	public void clickNewbutton() {
+	public AdminUsersPage clickNewbutton() {
 		newbutton.click();
+		return this;
 	}
 
-	public void enterUsernameOnUsernameField(String newusername) {
+	public AdminUsersPage enterUsernameOnUsernameField(String newusername) {
 		usernamefield.sendKeys(newusername);
+		return this;
 	}
 
-	public void enterPasswordOnPasswordField(String newpassword) {
+	public AdminUsersPage enterPasswordOnPasswordField(String newpassword) {
 
 		passwordfield.sendKeys(newpassword);
+		return this;
 	}
 
-	public void selectUserType(String newusertype) {
+	public AdminUsersPage selectUserType(String newusertype) {
 
 		Select select = new Select(usertypedropdown);
 		select.selectByVisibleText(newusertype);
+		return this;
 
 	}
 
-	public void clickSaveButton() {
+	public AdminUsersPage clickSaveButton() {
 
 		wait.waitUntilElementToBeClickable(driver, savebutton);
 		savebutton.click();
+		return this;
 	}
 
-	public void clickSearchMenuButton() {
+	public AdminUsersPage clickSearchMenuButton() {
 
 		searchmenubutton.click();
+		return this;
 	}
 
-	public void enterUsernameOnSearchUserNameField(String searchusername) {
+	public AdminUsersPage enterUsernameOnSearchUserNameField(String searchusername) {
 
 		searchusernamefield.sendKeys(searchusername);
+		return this;
 
 	}
 
-	public void selectUserTypeForSearch(String searchusertype) {
-
-		//Select select = new Select(searchusertypefield);
-		//select.selectByVisibleText(searchusertype);
+	public AdminUsersPage selectUserTypeForSearch(String searchusertype) {
 		
 		page.selectDropdownWithVisibleText(searchusertypefield, searchusertype);
+		return this;
 	}
 
-	public void clickSearchSubmitButton() {
+	public AdminUsersPage clickSearchSubmitButton() {
 
 		searchsubmitbutton.click();
+		return this;
 	}
 
-	public void clickResetButton() {
+	public AdminUsersPage clickResetButton() {
 
 		resetbutton.click();
+		return this;
 	}
 	
 	//Assertions

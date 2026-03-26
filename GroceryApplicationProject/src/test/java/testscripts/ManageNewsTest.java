@@ -15,6 +15,8 @@ import utilities.ExcelUtility;
 
 public class ManageNewsTest extends TestNgBase{
 	
+	HomePage home;
+	ManageNewsPage managenews;
 	
 	@Test  (priority =1 , description = "Test case to verify whether user is able to add new news")
 	public void verifyWhetherUserisAbletoAddNewNews() throws IOException {
@@ -23,23 +25,14 @@ public class ManageNewsTest extends TestNgBase{
 		String Password = ExcelUtility.readStringData(0, 1, "LoginPage");
 
 		LoginPage login = new LoginPage(driver);
-		login.enterUsername(username);
-		login.enterPassword(Password);
-		login.clickSubmitbutton();
+		login.enterUsername(username).enterPassword(Password);
+		home = login.clickSubmitbutton();
 
-		HomePage home = new HomePage(driver);
-		home.clickManageNewMoreInfoButton();
-		
-		//FakerUtility fakenews = new FakerUtility();
-		//String news = fakenews.createFakeNews();
+		managenews = home.clickManageNewMoreInfoButton();
 		
 		String news = ExcelUtility.readStringData(0, 0, "ManageNewsPage");
-		
-		
-		ManageNewsPage managenews = new ManageNewsPage(driver);
-		managenews.clickOnNewButtonInManageNewsField();
-		managenews.enterNewsIntheNewsField(news);
-		managenews.clickOnSaveButtonInManageNewsPage();
+			
+		managenews.clickOnNewButtonInManageNewsField().enterNewsIntheNewsField(news).clickOnSaveButtonInManageNewsPage();
 		
 		boolean savebuttondisplay =  managenews.isSaveButtonDisplayed();
 		Assert.assertFalse(savebuttondisplay,Constants.ADDNEWNEWSERROR);
@@ -54,19 +47,13 @@ public class ManageNewsTest extends TestNgBase{
 		String Password = ExcelUtility.readStringData(0, 1, "LoginPage");
 
 		LoginPage login = new LoginPage(driver);
-		login.enterUsername(username);
-		login.enterPassword(Password);
-		login.clickSubmitbutton();
+		login.enterUsername(username).enterPassword(Password);
+		home = login.clickSubmitbutton();
 
-		HomePage home = new HomePage(driver);
-		home.clickManageNewMoreInfoButton();
+		managenews = home.clickManageNewMoreInfoButton();
 		
 		String news = ExcelUtility.readStringData(0, 0, "ManageNewsPage");
-		
-		ManageNewsPage managenews = new ManageNewsPage(driver);
-		managenews.clickOnSearchButtonInManageNewsPage();
-		managenews.enterTheTitle(news);
-		managenews.clickOnSeachSubmitButtonInManageNewsPage();
+		managenews.clickOnSearchButtonInManageNewsPage().enterTheTitle(news).clickOnSeachSubmitButtonInManageNewsPage();
 		
 		String managenewstext = managenews.isManageNewsTextDisplayed();
 		Assert.assertEquals(managenewstext, "Manage News",  Constants.NEWSSEARCHERROR);
@@ -81,20 +68,14 @@ public class ManageNewsTest extends TestNgBase{
 		String Password = ExcelUtility.readStringData(0, 1, "LoginPage");
 
 		LoginPage login = new LoginPage(driver);
-		login.enterUsername(username);
-		login.enterPassword(Password);
-		login.clickSubmitbutton();
+		login.enterUsername(username).enterPassword(Password);
+		home = login.clickSubmitbutton();
 
-		HomePage home = new HomePage(driver);
-		home.clickManageNewMoreInfoButton();
+		managenews = home.clickManageNewMoreInfoButton();
 		
 		String news = ExcelUtility.readStringData(0, 0, "ManageNewsPage");
 		
-		ManageNewsPage managenews = new ManageNewsPage(driver);
-		managenews.clickOnSearchButtonInManageNewsPage();
-		managenews.enterTheTitle(news);
-		managenews.clickOnSeachSubmitButtonInManageNewsPage();
-		managenews.clickOnResetButtonInManageNewsPage();
+		managenews.clickOnSearchButtonInManageNewsPage().enterTheTitle(news).clickOnSeachSubmitButtonInManageNewsPage().clickOnResetButtonInManageNewsPage();
 		
 		String managenewsheadingtext = managenews.isManageNewsHeadingDisplayed();
 		Assert.assertEquals(managenewsheadingtext, "Manage News",  Constants.MANAGENEWSRESETERROR); 

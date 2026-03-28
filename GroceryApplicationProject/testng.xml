@@ -3,7 +3,7 @@
 <suite name="Suite">
 	<listeners><listener class-name="reportgeneration.Listners"></listener></listeners>
 	<test thread-count="5" name="Test">
-	<parameter name="Browser" value="firefox"></parameter>
+	<parameter name="Browser" value="chrome"></parameter>
 		<classes>
 			<class name="testscripts.ManageNewsTest">
 				<methods>

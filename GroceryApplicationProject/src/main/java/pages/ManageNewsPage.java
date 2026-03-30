@@ -5,9 +5,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import utilities.WaitUtility;
+
 public class ManageNewsPage {
 	
-
+    WaitUtility wait;
 	public WebDriver driver;
 
 	public ManageNewsPage(WebDriver driver) {
@@ -75,6 +77,8 @@ public class ManageNewsPage {
 	}
 	
 	public ManageNewsPage clickOnResetButtonInManageNewsPage() {
+		
+		wait.waitUntilElementToBeClickable(driver, resetbutton);
 		resetbutton.click();
 		return this;
 	}

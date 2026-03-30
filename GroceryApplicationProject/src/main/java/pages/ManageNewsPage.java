@@ -9,7 +9,7 @@ import utilities.WaitUtility;
 
 public class ManageNewsPage {
 	
-    WaitUtility wait;
+    WaitUtility wait = new WaitUtility();
 	public WebDriver driver;
 
 	public ManageNewsPage(WebDriver driver) {

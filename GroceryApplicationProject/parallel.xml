@@ -8,7 +8,7 @@
 			<class name="testscripts.LoginTest">
 			</class>
 		</classes>
-	</test> <!--
+	</test> <!--	
 	Test -->
 	<test thread-count="5" name="Test2">
 	<parameter name="Browser" value="firefox"></parameter>
